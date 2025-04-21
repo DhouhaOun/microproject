@@ -1,6 +1,7 @@
 pipeline {
     agent any
 
+
     environment {
         COMPOSE_PROJECT_NAME = 'microproject' // Namespace for containers
         COMPOSE_FILE = 'docker-compose.yml'
