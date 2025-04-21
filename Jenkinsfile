@@ -1,7 +1,6 @@
 pipeline {
     agent any
 
-
     environment {
         COMPOSE_PROJECT_NAME = 'microproject' // Namespace for containers
         COMPOSE_FILE = 'docker-compose.yml'
@@ -10,7 +9,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'https://github.com/DhouhaOun/microproject.git'
+                git branch: 'main', url: 'https://github.com/DhouhaOun/microproject.git'
             }
         }
 
