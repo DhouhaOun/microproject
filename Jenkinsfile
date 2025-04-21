@@ -13,6 +13,41 @@ pipeline {
             }
         }
 
+        stage('Build All Modules in Parallel') {
+          parallel {
+            discovery: {
+              dir('discovery-service') {
+                sh 'mvn clean package -DskipTests'
+              }
+            }
+            config: {
+              dir('config-service') {
+                sh 'mvn clean package -DskipTests'
+              }
+            }
+            customer: {
+               dir('customer-service') {
+                 sh 'mvn clean package -DskipTests'
+               }
+            }
+            inventory: {
+               dir('inventory-service') {
+                 sh 'mvn clean package -DskipTests'
+               }
+            }
+            billing: {
+               dir('billing-service') {
+                 sh 'mvn clean package -DskipTests'
+               }
+            }
+            gateway: {
+               dir('gatewey-service') {
+                 sh 'mvn clean package -DskipTests'
+               }
+            }
+          }
+        }
+
         stage('Stop Containers') {
             steps {
                 sh "docker compose -f ${COMPOSE_FILE} -p ${COMPOSE_PROJECT_NAME} down"
