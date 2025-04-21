@@ -14,49 +14,50 @@ pipeline {
             }
         }
 
-        stage('Build Services - Parallel') {
-            parallel {
-                discovery: {
-                    steps {
-                        dir('discovery-service') {
-                            sh 'mvn clean package -DskipTests'
-                        }
-                    }
+        stage('Build Discovery Service') {
+            steps {
+                dir('discovery-service') {
+                    sh 'mvn clean package -DskipTests'
                 }
-                config: {
-                    steps {
-                        dir('config-service') {
-                            sh 'mvn clean package -DskipTests'
-                        }
-                    }
+            }
+        }
+
+        stage('Build Config Service') {
+            steps {
+                dir('config-service') {
+                    sh 'mvn clean package -DskipTests'
                 }
-                customer: {
-                    steps {
-                        dir('customer-service') {
-                            sh 'mvn clean package -DskipTests'
-                        }
-                    }
+            }
+        }
+
+        stage('Build Customer Service') {
+            steps {
+                dir('customer-service') {
+                    sh 'mvn clean package -DskipTests'
                 }
-                inventory: {
-                    steps {
-                        dir('inventory-service') {
-                            sh 'mvn clean package -DskipTests'
-                        }
-                    }
+            }
+        }
+
+        stage('Build Inventory Service') {
+            steps {
+                dir('inventory-service') {
+                    sh 'mvn clean package -DskipTests'
                 }
-                billing: {
-                    steps {
-                        dir('billing-service') {
-                            sh 'mvn clean package -DskipTests'
-                        }
-                    }
+            }
+        }
+
+        stage('Build Billing Service') {
+            steps {
+                dir('billing-service') {
+                    sh 'mvn clean package -DskipTests'
                 }
-                gateway: {
-                    steps {
-                        dir('gateway-service') {
-                            sh 'mvn clean package -DskipTests'
-                        }
-                    }
+            }
+        }
+
+        stage('Build Gateway Service') {
+            steps {
+                dir('gatewey-service') {
+                    sh 'mvn clean package -DskipTests'
                 }
             }
         }
