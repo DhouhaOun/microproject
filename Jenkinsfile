@@ -14,36 +14,46 @@ pipeline {
             }
         }
 
-        stage('Build All Services in Parallel') {
-            steps {
-                parallel {
-                    discovery: {
+        stage('Build Services - Parallel') {
+            parallel {
+                discovery: {
+                    steps {
                         dir('discovery-service') {
                             sh 'mvn clean package -DskipTests'
                         }
                     }
-                    config: {
+                }
+                config: {
+                    steps {
                         dir('config-service') {
                             sh 'mvn clean package -DskipTests'
                         }
                     }
-                    customer: {
+                }
+                customer: {
+                    steps {
                         dir('customer-service') {
                             sh 'mvn clean package -DskipTests'
                         }
                     }
-                    inventory: {
+                }
+                inventory: {
+                    steps {
                         dir('inventory-service') {
                             sh 'mvn clean package -DskipTests'
                         }
                     }
-                    billing: {
+                }
+                billing: {
+                    steps {
                         dir('billing-service') {
                             sh 'mvn clean package -DskipTests'
                         }
                     }
-                    gateway: {
-                        dir('gatewey-service') {
+                }
+                gateway: {
+                    steps {
+                        dir('gateway-service') {
                             sh 'mvn clean package -DskipTests'
                         }
                     }
