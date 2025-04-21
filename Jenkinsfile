@@ -15,13 +15,13 @@ pipeline {
 
         stage('Stop Containers') {
             steps {
-                sh "docker-compose -f ${COMPOSE_FILE} -p ${COMPOSE_PROJECT_NAME} down"
+                sh "docker compose -f ${COMPOSE_FILE} -p ${COMPOSE_PROJECT_NAME} down"
             }
         }
 
         stage('Build & Start Containers') {
             steps {
-                sh "docker-compose -f ${COMPOSE_FILE} -p ${COMPOSE_PROJECT_NAME} up -d --build"
+                sh "docker compose -f ${COMPOSE_FILE} -p ${COMPOSE_PROJECT_NAME} up -d --build"
             }
         }
 
